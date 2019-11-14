@@ -1,5 +1,5 @@
 package br.com.ufc.dao;
 
-public class teste {
+public class LivroDAO {
 
 }
