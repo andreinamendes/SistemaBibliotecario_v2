@@ -7,18 +7,17 @@ import br.com.ufc.connection.ConnectionPSQL;
 
 public class Main {
 	public static void main(String[] args) {
-		ConnectionPSQL connection = new ConnectionPSQL();
-		Connection a = connection.getConnection();
-		System.out.println("Conectado");
-		try {
-			a.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		ConnectionPSQL connection = new ConnectionPSQL();
+//		Connection a = connection.getConnection();
+//		System.out.println("Conectado");
+//		try {
+//			a.close();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
-		//ViewServidor servidor = new ViewServidor();
-		//servidor.menuPrincipal();
-		
+		Application ap = new Application();
+		ap.telaLogin();
 	}
 }
