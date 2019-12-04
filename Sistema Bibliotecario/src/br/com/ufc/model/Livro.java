@@ -1,23 +1,28 @@
 package br.com.ufc.model;
 
-import java.util.List;
-import java.util.ArrayList;
-
 public class Livro {
-	private int isbn;
+	private int numAcv;
 	private String titulo;
-	private String ano_lançamento;
-	private List<Unidade> unidades;
+	private String ano_lancamento;
 	private int edicao;
+	private int quantidade;
 	
-	public int getIsbn() {
-		return isbn;
+	public int getNumAcv() {
+		return numAcv;
 	}
-	
-	public void setIsbn(int isbn) {
-		this.isbn = isbn;
+
+	public void setNumAcv(int numAcv) {
+		this.numAcv = numAcv;
 	}
-	
+
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+
 	public String getTitulo() {
 		return titulo;
 	}
@@ -26,20 +31,12 @@ public class Livro {
 		this.titulo = titulo;
 	}
 	
-	public String getAno_lançamento() {
-		return ano_lançamento;
+	public String getAno_lancamento() {
+		return ano_lancamento;
 	}
 	
-	public void setAno_lançamento(String ano_lançamento) {
-		this.ano_lançamento = ano_lançamento;
-	}
-	
-	public List<Unidade> getUnidades() {
-		return unidades;
-	}
-	
-	public void setUnidades(List<Unidade> unidades) {
-		this.unidades = unidades;
+	public void setAno_lancamento(String ano_lançamento) {
+		this.ano_lancamento = ano_lançamento;
 	}
 	
 	public int getEdicao() {

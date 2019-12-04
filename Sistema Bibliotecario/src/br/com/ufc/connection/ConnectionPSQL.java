@@ -9,7 +9,7 @@ public class ConnectionPSQL {
 	private final Integer port = 5432;
 	private final String user = "postgres";
 	private final String password = "postgres";
-	private final String database = "FBD_teste";
+	private final String database = "SisBiblioteca";
 	
 	public Connection getConnection() {
 		try {

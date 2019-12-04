@@ -16,8 +16,8 @@ public class Main {
 			e.printStackTrace();
 		}*/
 		
-		ViewServidor servidor = new ViewServidor();
-		servidor.menuPrincipal();
+		//ViewServidor servidor = new ViewServidor();
+		//servidor.menuPrincipal();
 		
 	}
 }

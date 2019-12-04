@@ -6,7 +6,7 @@ public interface InterfaceDAO<Model> {
 	
 	public boolean inserir(Model t);
 	public boolean atualizar(Model t);
-	public Model remover(Model t);
+	public boolean remover(Model t);
 	public ArrayList<Model> buscar(String t);
 
 }
