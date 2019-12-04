@@ -13,7 +13,8 @@ CREATE TABLE usuario(
 
 CREATE TABLE telefone(
     id_usr INTEGER NOT NULL,
-    telefone VARCHAR(20) NOT NULL,
+	ddd CHAR(2) NOT NULL,
+    telefone VARCHAR(9) NOT NULL,
     FOREIGN KEY(id_usr) REFERENCES usuario(id)
 );
 

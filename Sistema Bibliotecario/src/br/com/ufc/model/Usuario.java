@@ -4,16 +4,29 @@ import java.util.List;
 import java.util.ArrayList;
 
 public abstract class Usuario {
+	private int id;
 	private String data_nasc;
 	private String senha;
-	private long cpf;
-	private List<Telefone> telefone;
+	private String cpf;
+	private ArrayList<Telefone> telefone;
 	private String nome;
 	private String email;
 	private String rua;
 	private String cidade;
 	private String estado;
 	private int numero;
+	
+	public Usuario() {
+		this.telefone = new ArrayList<Telefone>();
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	public String getRua() {
 		return rua;
@@ -63,20 +76,20 @@ public abstract class Usuario {
 		this.senha = senha;
 	}
 	
-	public long getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 	
-	public void setCpf(long cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 	
-	public List<Telefone> getTelefone() {
+	public ArrayList<Telefone> getTelefone() {
 		return telefone;
 	}
 	
-	public void setTelefone(List<Telefone> telefone) {
-		this.telefone = telefone;
+	public void setTelefone(Telefone telefone) {
+		this.telefone.add(telefone);
 	}
 	
 	public String getNome() {

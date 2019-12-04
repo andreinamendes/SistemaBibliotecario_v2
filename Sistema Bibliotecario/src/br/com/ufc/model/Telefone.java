@@ -1,27 +1,22 @@
 package br.com.ufc.model;
 
 public class Telefone {
-	private int ddd;
-	private int numero;
-	private int constante = 9;
+	private String ddd;
+	private String numero;
 	
-	public int getDdd() {
+	public String getDdd() {
 		return ddd;
 	}
 	
-	public void setDdd(int ddd) {
+	public void setDdd(String ddd) {
 		this.ddd = ddd;
 	}
 	
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 	
-	public void setNumero(int numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
-	}
-	
-	public int getConstante() {
-		return constante;
 	}
 }
