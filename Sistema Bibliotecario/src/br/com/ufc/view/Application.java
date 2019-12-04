@@ -41,19 +41,6 @@ public class Application {
 		System.out.println("Voltar");
 		System.out.println("\n-----------------------------");
 
-//		do {
-//			opcao = obj.nextInt();
-//			if(opcao == 1) {
-//				loginAluno();
-//				break;
-//			}else if(opcao == 2) {
-//				loginServidor();
-//				break;
-//			}else if(opcao == 3)
-//				System.exit(0);
-//			else 
-//				System.out.println("Opção inválida, digite novamente: ");
-//		}while(true);
 	}
 	
 	public void loginServidor() {
