@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.ArrayList;
 
 import br.com.ufc.model.Aluno;
 import br.com.ufc.model.Usuario;
@@ -79,8 +78,41 @@ public class AlunoDAO{
 		return false;
 	}*/
 
-	public boolean remover(Aluno t) {
+	public boolean remover(Aluno aluno) {
+		String sql1 = "SELECT * FROM aluno WHERE matricula = ?;";
+		String sql2 = "DELETE FROM aluno WHERE matricula = ?;";
+		String sql3 = "DELETE FROM usuario WHERE id = ?;";
 		
+		try {
+			this.connection = connectionPSQL.getConnection();
+			PreparedStatement std = connection.prepareStatement(sql1);
+			std.setInt(1, aluno.getMatricula());
+			ResultSet resultado = std.executeQuery();
+			while(resultado.next()) {
+				int id = resultado.getInt("id_usr");
+				std = connection.prepareStatement(sql2);
+				std.setInt(1, aluno.getMatricula());
+				int execucao = std.executeUpdate();
+				if(execucao > 0) {
+					std = connection.prepareStatement(sql3);
+					std.setInt(1, id);
+					execucao = std.executeUpdate();
+					if(execucao > 0) {
+						return true;
+					}
+					return false;
+				}
+			}	
+			return false;
+		}catch(SQLException e) {
+			System.out.println("");
+		}finally {
+			try {
+				connection.close();
+			}catch(SQLException e) {
+				System.out.println("");
+			}
+		}		
 		return false;
 	}
 

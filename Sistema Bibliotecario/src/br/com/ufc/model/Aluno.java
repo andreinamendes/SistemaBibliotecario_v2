@@ -1,6 +1,6 @@
 package br.com.ufc.model;
 
-public class Aluno{
+public class Aluno extends Usuario{
 	private String curso;
 	private int matricula;
 	
