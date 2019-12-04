@@ -1,11 +1,14 @@
 package br.com.ufc.model;
 
 import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public abstract class Usuario {
 	private int id;
-	private String data_nasc;
+	private String dataNasc;
 	private String senha;
 	private String cpf;
 	private ArrayList<Telefone> telefone;
@@ -60,12 +63,13 @@ public abstract class Usuario {
 		this.numero = numero;
 	}
 	
-	public String getData_nasc() {
-		return data_nasc;
+	public Date getDataNasc() throws ParseException {
+		Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dataNasc);
+		return date;
 	}
 	
-	public void setData_nasc(String data_nasc) {
-		this.data_nasc = data_nasc;
+	public void setDataNasc(String dataNasc) {
+		this.dataNasc = dataNasc;
 	}
 	
 	public String getSenha() {
