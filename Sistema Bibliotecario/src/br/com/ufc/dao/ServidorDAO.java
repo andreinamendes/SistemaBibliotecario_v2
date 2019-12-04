@@ -19,9 +19,9 @@ public class ServidorDAO implements InterfaceDAO<Servidor>{
 	}
 
 	@Override
-	public Servidor remover(Servidor t) {
+	public boolean remover(Servidor t) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override

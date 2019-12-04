@@ -35,8 +35,8 @@ public class Livro {
 		return ano_lancamento;
 	}
 	
-	public void setAno_lancamento(String ano_lançamento) {
-		this.ano_lancamento = ano_lançamento;
+	public void setAno_lancamento(String ano_lancamento) {
+		this.ano_lancamento = ano_lancamento;
 	}
 	
 	public int getEdicao() {

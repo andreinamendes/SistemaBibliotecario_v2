@@ -3,7 +3,6 @@ package br.com.ufc.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
