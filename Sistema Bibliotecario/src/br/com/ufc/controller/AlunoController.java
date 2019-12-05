@@ -5,16 +5,19 @@ import java.util.Scanner;
 import br.com.ufc.connection.ConnectionPSQL;
 import br.com.ufc.dao.*;
 import br.com.ufc.model.*;
+import br.com.ufc.controller.TelefoneController;
 
 public class AlunoController {
 	private ConnectionPSQL connectionPSQL;
 	private AlunoDAO alunodao;
 	private Scanner obj;
+	private TelefoneController tel;
 	
 	public AlunoController() {
 		this.connectionPSQL = new ConnectionPSQL();
 		this.alunodao = new AlunoDAO(connectionPSQL);
 		this.obj = new Scanner(System.in);
+		this.tel = new TelefoneController();
 	}
 	
 	public boolean login(String senha, int matricula) {
@@ -24,7 +27,7 @@ public class AlunoController {
 		return false;
 	}
 	
-	public boolean cadastrarAluno() {
+	public void cadastrarAluno() {
 		Usuario usuario = new Usuario();
 		Aluno aluno = new Aluno();
 		int qtd;
@@ -59,10 +62,9 @@ public class AlunoController {
 			telefone.setNumero(obj.nextLine());
 			usuario.setTelefone(telefone);
 		}
-		if(alunodao.inserir(usuario, aluno))
+		if(alunodao.inserir(usuario, aluno) && tel.inserir(usuario))
 			System.out.println("Aluno " + usuario.getNome() + " cadastrado com sucesso!");
 		else
 			System.out.println("Erro, aluno não cadastrado.");
-		return false;
 	}
 }

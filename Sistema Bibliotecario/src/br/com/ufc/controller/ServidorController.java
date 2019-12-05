@@ -29,15 +29,11 @@ public class ServidorController {
 		conLivro.listarAll();
 	}
 	
-	public boolean cadastrarLivro() {
-		if(conLivro.cadastrarLivro())
-			return true;
-		return false;
+	public void cadastrarLivro() {
+		conLivro.cadastrarLivro();
 	}
 	
-	public boolean cadastrarAluno() {
-		if(conAluno.cadastrarAluno())
-			return true;
-		return false;
+	public void cadastrarAluno() {
+		conAluno.cadastrarAluno();
 	}
 }

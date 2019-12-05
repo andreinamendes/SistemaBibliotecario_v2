@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public abstract class Usuario {
+public class Usuario {
 	private int id;
 	private String dataNasc;
 	private String senha;
@@ -17,6 +17,7 @@ public abstract class Usuario {
 	private String cidade;
 	private String estado;
 	private String numero;
+	
 	
 	public Usuario() {
 		this.telefone = new ArrayList<Telefone>();

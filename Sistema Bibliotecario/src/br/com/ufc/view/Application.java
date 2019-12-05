@@ -188,15 +188,9 @@ public class Application {
 		do {
 			opcao = obj.nextInt();
 			if(opcao == 1)
-				if(conServidor.cadastrarAluno())
-					System.out.println("Cadastro realizado com sucesso!");
-				else
-					System.out.println("Erro.Cadastro não efetuado.");
+				conServidor.cadastrarAluno();
 			else if(opcao == 2)
-				if(conServidor.cadastrarLivro())
-					System.out.println("Cadastro realizado com sucesso!");
-				else
-					System.out.println("Erro.Cadastro não efetuado.");
+				conServidor.cadastrarLivro();
 			else
 				System.out.print("Opção inválida. Digite novamente: ");
 		}while(true);
