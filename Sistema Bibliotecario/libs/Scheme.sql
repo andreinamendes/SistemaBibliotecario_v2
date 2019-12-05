@@ -70,10 +70,10 @@ CREATE TABLE unidade(
 );
 
 CREATE TABLE emprestimo(
-	num_reg INTEGER NOT NULL,
+	num_reg INTEGER NOT NULL PRIMARY KEY,
 	matricula INTEGER NOT NULL,
-    data_emp DATE NOT NULL DEFAULT '0001-01-01',
-    data_devo DATE NOT NULL DEFAULT '0001-01-01',
+    data_emp DATE NOT NULL,
+    data_devo DATE NOT NULL,
     qtd_reno INTEGER NOT NULL DEFAULT 0,
     FOREIGN KEY(matricula) REFERENCES aluno(matricula),
     FOREIGN KEY(num_reg) REFERENCES unidade(num_reg)
