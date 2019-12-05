@@ -34,7 +34,7 @@ public class AlunoDAO{
 			try {
 				std.setDate(5, new java.sql.Date((usuario.getDataNasc()).getTime()));
 			}catch(ParseException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 			std.setString(6, usuario.getRua());
 			std.setString(7, usuario.getNumero());
@@ -62,12 +62,12 @@ public class AlunoDAO{
 			}
 			return false;			
 		}catch(SQLException e) {
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				connection.close();
 			}catch(SQLException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}		
 		return false;
@@ -105,12 +105,12 @@ public class AlunoDAO{
 			}	
 			return false;
 		}catch(SQLException e) {
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				connection.close();
 			}catch(SQLException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}		
 		return false;
@@ -142,12 +142,12 @@ public class AlunoDAO{
 				return aluno;
 			}			
 		}catch(SQLException e) {
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				connection.close();
 			}catch(SQLException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}
 		return null;

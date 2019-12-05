@@ -103,13 +103,13 @@ public class LivroDAO{
 	}
 	
 	public ArrayList<Livro> buscar(String key){
-		String sql = "SELECT * FROM livro WHERE titulo ILIKE '%?%'";
+		String sql = "SELECT * FROM livro WHERE titulo ILIKE ?";
 		ArrayList<Livro> livros = new ArrayList<Livro>();
-		
+
 		try {
 			this.connection = connectionPSQL.getConnection();
 			PreparedStatement std = connection.prepareStatement(sql);
-			std.setString(1, key);
+			std.setString(1, "%" + key + "%");
 			ResultSet resultado = std.executeQuery();			
 			while(resultado.next()) {
 				Livro livro = new Livro();
@@ -122,7 +122,7 @@ public class LivroDAO{
 				livros.add(livro);
 			}			
 		}catch(SQLException e) {
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				this.connection.close();
