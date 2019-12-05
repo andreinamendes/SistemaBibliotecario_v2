@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import br.com.ufc.model.Livro;
 import br.com.ufc.connection.ConnectionPSQL;
 
-public class LivroDAO implements InterfaceDAO<Livro>{
+public class LivroDAO{
 	private ConnectionPSQL connectionPSQL;
 	private Connection connection;
 	
