@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import br.com.ufc.model.Aluno;
 import br.com.ufc.model.Emprestimo;
 import br.com.ufc.model.Reserva;
 import br.com.ufc.connection.ConnectionPSQL;
@@ -111,12 +112,61 @@ public class EmprestimoDAO {
 		return false;
 	}
 	
-	public boolean reservar(Reserva reserva) {
+	public boolean reservar(Reserva reserva) throws ParseException {
+		String sql = "INSERT INTO reserva VALUES(?, ?, ?);";
+		
+		try {
+			this.connection = connectionPSQL.getConnection();
+			PreparedStatement std = connection.prepareStatement(sql);
+			std.setInt(1, reserva.getMatricula());
+			std.setInt(2, reserva.getNumAcv());
+			std.setDate(3, new java.sql.Date((reserva.getDataRsv()).getTime()));
+			int execucao = std.executeUpdate();
+			std.close();
+			if(execucao > 0) {
+				return true;
+			}
+			return false;
+		}catch(SQLException e) {
+			System.out.println("");
+		}finally {
+			try {
+				connection.close();
+			}catch(SQLException e) {
+				System.out.println("");
+			}
+		}		
 		return false;
 	}
 	
-	public ArrayList<Emprestimo> listarEmprestimos(){
-		return null;
-	}
-	
+	public ArrayList<Emprestimo> listarEmprestimos(Aluno aluno){
+		ArrayList<Emprestimo> emprestimos = new ArrayList<Emprestimo>();
+		String sql = "SELECT * FROM emprestimos WHERE matricula = ?;";
+		
+		try {
+			this.connection = connectionPSQL.getConnection();
+			PreparedStatement std = connection.prepareStatement(sql);
+			std.setInt(1, aluno.getMatricula());
+			ResultSet resultado = std.executeQuery();
+			while(resultado.next()) {
+				Emprestimo emprestimo = new Emprestimo();
+				emprestimo.setNumReg(resultado.getInt("num_reg"));
+				emprestimo.setMatricula(resultado.getInt("matricula"));
+				emprestimo.setQtdReno(resultado.getInt("qtd_reno"));
+				emprestimo.setDataEmp(resultado.getString("data_emp"));
+				emprestimo.setDataDevo(resultado.getString("data_devo"));
+				
+				emprestimos.add(emprestimo);
+			}			
+		}catch(SQLException e) {
+			System.out.println("");
+		}finally {
+			try {
+				connection.close();
+			}catch(SQLException e) {
+				System.out.println("");
+			}
+		}
+		return emprestimos;
+	}	
 }
