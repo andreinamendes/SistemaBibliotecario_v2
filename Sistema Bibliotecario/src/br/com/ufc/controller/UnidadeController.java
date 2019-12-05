@@ -29,4 +29,9 @@ public class UnidadeController {
 		}
 		return true;
 	}
+	
+	public Livro buscarRegistro(int reg) {
+		Livro livro = unidadedao.buscar(reg);
+		return livro;
+	}
 }

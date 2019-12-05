@@ -10,20 +10,21 @@ import br.com.ufc.model.*;
 public class EmprestimoController {
 	private ConnectionPSQL connectionPSQL;
 	private EmprestimoDAO emprestimodao;
-	private LivroController conLivro; 
+	private UnidadeController conUnidade; 
 	
 	public EmprestimoController() {
 		this.connectionPSQL = new ConnectionPSQL();
 		this.emprestimodao = new EmprestimoDAO(connectionPSQL);
-		this.conLivro = new LivroController();
+		this.conUnidade = new UnidadeController();
 	}
 	
 	public boolean listarEmprestimos(Aluno aluno) throws ParseException{
 		ArrayList<Emprestimo> emprestimos = emprestimodao.listarEmprestimos(aluno);
 		if(emprestimos != null) {
+			System.out.println("");
 			for(int a = 0; a < emprestimos.size(); a++) {
-				System.out.println("Empréstimo " + (a + 1) + ":");
-				System.out.println("\t Livro: " + conLivro.buscarRegistro(emprestimos.get(a).getNumReg()).getTitulo());
+				System.out.println("Empréstimo " + emprestimos.get(a).getNumReg() + ":");
+				System.out.println("\t Livro: " + conUnidade.buscarRegistro(emprestimos.get(a).getNumReg()).getTitulo());
 				System.out.println("\t Data de empréstimo: " + emprestimos.get(a).getStringDataEmp());
 				System.out.println("\t Data de devolução: " + emprestimos.get(a).getStringDataDevo());
 				System.out.println("\t Quantidade de renovações: " + emprestimos.get(a).getQtdReno());

@@ -134,15 +134,15 @@ public class Application {
 					System.out.println("\t 2 - Voltar");
 					System.out.print("\nDigite a opção: ");
 					opcao1 = obj.nextInt();
-					if(opcao1 == 1)
+					if(opcao1 == 1) {
 						renovarEmprestimo();
-					else
+						menuAluno();
+					}else
 						menuAluno();
 				}
 				break;
 			}else if(opcao == 2) {
-				conLivro.buscar();
-				break;
+				
 			}else if(opcao == 3) {
 				telaLogin();
 				break;
@@ -151,12 +151,22 @@ public class Application {
 		}while(true);
 	}
 	
+	public void alugarLivro() {
+		
+	}
+	
 	public void renovarEmprestimo() {
 		int id;
-		System.out.print("Digite o id do emprestimo a ser renovado: ");
+		System.out.print("Digite o número de registro do livro a ser renovado: ");
 		id = obj.nextInt();
 		ArrayList<Emprestimo> emprestimos = conEmprestimo.getEmprestimos(alunoLogado);
-		conEmprestimo.renovarEmprestimo(emprestimos.get(id - 1));
+		for(int a = 0; a < emprestimos.size(); a++) {
+			if(emprestimos.get(a).getNumReg() == id) {
+				conEmprestimo.renovarEmprestimo(emprestimos.get(a));
+				System.out.println("Renovado com sucesso!\n");
+				return;
+			}
+		}
 	}
 	
 	public void menuServidor() throws ParseException {

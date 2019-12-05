@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.com.ufc.model.Livro;
 import br.com.ufc.model.Unidade;
 import br.com.ufc.connection.ConnectionPSQL;
 
@@ -124,5 +125,35 @@ public class UnidadeDAO{
 			}
 		}		
 		return unidades;
+	}
+	
+	public Livro buscar(int numReg) {
+		String sql = "SELECT * FROM (unidade JOIN emprestimo ON unidade.num_reg = emprestimo.num_reg) JOIN livro ON unidade.num_acv = livro.num_acv WHERE unidade.num_reg = ?;";
+		
+		try {
+			this.connection = connectionPSQL.getConnection();
+			PreparedStatement std = connection.prepareStatement(sql);
+			std.setInt(1, numReg);
+			ResultSet resultado = std.executeQuery();
+			while(resultado.next()) {
+				Livro livro = new Livro();
+				livro.setTitulo(resultado.getString("titulo"));
+				livro.setEdicao(resultado.getInt("edicao"));
+				livro.setAno_lancamento(resultado.getString("ano_lan"));
+				livro.setNumAcv(resultado.getInt("num_acv"));
+				livro.setQuantidade(resultado.getInt("qtd"));
+				
+				return livro;
+			}			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				connection.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}		
+		return null;
 	}
 }

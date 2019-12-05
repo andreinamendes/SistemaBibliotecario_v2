@@ -80,20 +80,21 @@ public class EmprestimoDAO {
 	}
 	
 	public boolean atualizar(Emprestimo emprestimo) throws ParseException {
-		String sql = "UPDATE emprestimo SET data_devo = ?, qtd_reno = ?;";
+		String sql = "UPDATE emprestimo SET data_devo = ?, qtd_reno = ? WHERE num_reg = ?;";
 		
 		try {
 			this.connection = connectionPSQL.getConnection();
 			PreparedStatement std = connection.prepareStatement(sql);
 			
-			Date date = (Date) emprestimo.getDataDevo();
+			java.util.Date date = emprestimo.getDataDevo();
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(date);
 			cal.add(Calendar.DAY_OF_MONTH, 30);
-			date = (Date) cal.getTime();
+			date = cal.getTime();
 			
 			std.setDate(1, new java.sql.Date(date.getTime()));
 			std.setInt(2, emprestimo.getQtdReno() + 1);
+			std.setInt(3, emprestimo.getNumReg());
 			int execucao = std.executeUpdate();
 			std.close();
 			if(execucao > 0) {
