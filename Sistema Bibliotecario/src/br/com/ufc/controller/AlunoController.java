@@ -90,6 +90,7 @@ public class AlunoController {
 		return false;
 	}
 	
+	
 	public void renovarEmprestimo(Aluno aluno) {
 		int id;
 		System.out.print("Digite o número de registro do livro a ser renovado: ");
