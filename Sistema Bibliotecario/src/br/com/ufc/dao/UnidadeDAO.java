@@ -4,13 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
 
 import br.com.ufc.model.Unidade;
 import br.com.ufc.connection.ConnectionPSQL;
 
-public class UnidadeDAO implements InterfaceDAO<Unidade>{
+public class UnidadeDAO{
 	private ConnectionPSQL connectionPSQL;
 	private Connection connection;
 	
@@ -19,58 +18,13 @@ public class UnidadeDAO implements InterfaceDAO<Unidade>{
 	}
 	
 	public boolean inserir(Unidade unidade) {
-		String sql = "INSERT INTO unidade(num_reg, num_acv, matricula, data_emp, data_devo, qtd_reno) VALUES(?, ?, ?, ?, ?, ?);";
+		String sql = "INSERT INTO unidade(num_reg, num_acv) VALUES(?, ?);";
 		
 		try {
 			this.connection = connectionPSQL.getConnection();
 			PreparedStatement std = connection.prepareStatement(sql);
-			try {
-				std.setInt(1, unidade.getNumReg());
-				std.setInt(2, unidade.getNumAcv());
-				std.setInt(3, unidade.getMatricula());
-				std.setDate(4, new java.sql.Date((unidade.getDataEmprestimo()).getTime()));
-				std.setDate(5, new java.sql.Date((unidade.getDataDevolucao()).getTime()));
-				std.setInt(6, unidade.getQtdRenovacao());
-			}catch(ParseException e) {
-				System.out.println("");
-			}
-			
-			int execucao = std.executeUpdate();
-			std.close();
-			if(execucao > 0) {
-				return true;
-			}
-			return false;
-		}catch(SQLException e) {
-			System.out.println("");
-		}finally {
-			try {
-				connection.close();
-			}catch(SQLException e) {
-				System.out.println("");
-			}
-		}		
-		return false;
-	}
-
-	public boolean atualizar(Unidade unidade) {
-		String sql = "UPDATE unidade SET num_reg = ?, num_acv = ?, matricula = ?, data_emp = ?, data_devo = ?, qtd_reno = ? WHERE num_reg = ?";
-		
-		try {
-			this.connection = connectionPSQL.getConnection();
-			PreparedStatement std = connection.prepareStatement(sql);
-			try {
-				std.setInt(1, unidade.getNumReg());
-				std.setInt(2, unidade.getNumAcv());
-				std.setInt(3, unidade.getMatricula());
-				std.setDate(4, new java.sql.Date((unidade.getDataEmprestimo()).getTime()));
-				std.setDate(5, new java.sql.Date((unidade.getDataDevolucao()).getTime()));
-				std.setInt(6, unidade.getQtdRenovacao());
-				std.setInt(7, unidade.getNumReg());
-			}catch(ParseException e) {
-				System.out.println("");
-			}
-			
+			std.setInt(1, unidade.getNumReg());
+			std.setInt(2, unidade.getNumAcv());
 			int execucao = std.executeUpdate();
 			std.close();
 			if(execucao > 0) {
@@ -129,10 +83,6 @@ public class UnidadeDAO implements InterfaceDAO<Unidade>{
 				Unidade unidade = new Unidade();
 				unidade.setNumReg(resultado.getInt("num_reg"));
 				unidade.setNumAcv(resultado.getInt("num_acv"));
-				unidade.setMatricula(resultado.getInt("matricula"));
-				unidade.setDataEmprestimo(resultado.getString("dataEmprestimo"));
-				unidade.setDataDevolucao(resultado.getString("dataDevolucao"));
-				unidade.setQtdRenovacao(resultado.getInt("qtdRenovacao"));
 				
 				unidades.add(unidade);
 			}
@@ -161,10 +111,6 @@ public class UnidadeDAO implements InterfaceDAO<Unidade>{
 				Unidade unidade = new Unidade();
 				unidade.setNumReg(resultado.getInt("num_reg"));
 				unidade.setNumAcv(resultado.getInt("num_acv"));
-				unidade.setMatricula(resultado.getInt("matricula"));
-				unidade.setDataEmprestimo(resultado.getString("dataEmprestimo"));
-				unidade.setDataDevolucao(resultado.getString("dataDevolucao"));
-				unidade.setQtdRenovacao(resultado.getInt("qtdRenovacao"));
 				
 				unidades.add(unidade);
 			}
