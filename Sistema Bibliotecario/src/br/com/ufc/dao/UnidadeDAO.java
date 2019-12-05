@@ -32,12 +32,12 @@ public class UnidadeDAO{
 			}
 			return false;
 		}catch(SQLException e) {
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				connection.close();
 			}catch(SQLException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}		
 		return false;
@@ -58,12 +58,12 @@ public class UnidadeDAO{
 			}
 			return false;
 		}catch(SQLException e) {
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				connection.close();
 			}catch(SQLException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}
 		return false;
@@ -87,12 +87,12 @@ public class UnidadeDAO{
 				unidades.add(unidade);
 			}
 		}catch(SQLException e) {
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				connection.close();
 			}catch(SQLException e){
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}		
 		return unidades;
@@ -115,12 +115,12 @@ public class UnidadeDAO{
 				unidades.add(unidade);
 			}
 		}catch(SQLException e) {
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				connection.close();
 			}catch(SQLException e){
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}		
 		return unidades;

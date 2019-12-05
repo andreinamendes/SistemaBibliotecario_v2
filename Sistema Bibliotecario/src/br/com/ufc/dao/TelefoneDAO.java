@@ -35,12 +35,12 @@ public class TelefoneDAO {
 			}
 			return false;
 		}catch(SQLException e) {
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				connection.close();
 			}catch(SQLException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}
 		return false;
@@ -63,12 +63,12 @@ public class TelefoneDAO {
 			}
 			return false;
 		}catch(SQLException e) {			
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				connection.close();
 			}catch(SQLException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}		
 		return false;
@@ -91,12 +91,12 @@ public class TelefoneDAO {
 				telefones.add(telefone);
 			}			
 		}catch(SQLException e) {
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				connection.close();
 			}catch(SQLException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}		
 		return telefones;

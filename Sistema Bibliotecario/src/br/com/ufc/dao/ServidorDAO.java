@@ -36,7 +36,7 @@ public class ServidorDAO{
 			try {
 				std.setDate(5, new java.sql.Date((usuario.getDataNasc()).getTime()));
 			}catch(ParseException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 			std.setString(6, usuario.getRua());
 			std.setString(7, usuario.getNumero());
@@ -64,12 +64,12 @@ public class ServidorDAO{
 			}
 			return false;			
 		}catch(SQLException e) {
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				connection.close();
 			}catch(SQLException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}		
 		return false;
@@ -107,12 +107,12 @@ public class ServidorDAO{
 			}	
 			return false;
 		}catch(SQLException e) {
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				connection.close();
 			}catch(SQLException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}		
 		return false;
@@ -148,12 +148,12 @@ public class ServidorDAO{
 				return servidor;
 			}
 		}catch(SQLException e) {
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				connection.close();
 			}catch(SQLException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}
 		return null;

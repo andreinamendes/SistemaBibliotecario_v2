@@ -34,7 +34,7 @@ public class EmprestimoDAO {
 				std.setDate(3, new java.sql.Date((emprestimo.getDataEmp()).getTime()));
 				std.setDate(4, new java.sql.Date((emprestimo.getDataDevo()).getTime()));
 			}catch(ParseException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 			int execucao = std.executeUpdate();
 			std.close();
@@ -43,12 +43,12 @@ public class EmprestimoDAO {
 			}
 			return false;			
 		}catch(SQLException e) {
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				connection.close();
 			}catch(SQLException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}		
 		return false;
@@ -68,12 +68,12 @@ public class EmprestimoDAO {
 			}
 			return false;
 		}catch(SQLException e) {
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				connection.close();
 			}catch(SQLException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}		
 		return false;
@@ -101,12 +101,12 @@ public class EmprestimoDAO {
 			}
 			return false;
 		}catch(SQLException e) {
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				connection.close();
 			}catch(SQLException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}		
 		return false;
@@ -128,12 +128,12 @@ public class EmprestimoDAO {
 			}
 			return false;
 		}catch(SQLException e) {
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				connection.close();
 			}catch(SQLException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}		
 		return false;
@@ -159,12 +159,12 @@ public class EmprestimoDAO {
 				emprestimos.add(emprestimo);
 			}			
 		}catch(SQLException e) {
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				connection.close();
 			}catch(SQLException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}
 		return emprestimos;

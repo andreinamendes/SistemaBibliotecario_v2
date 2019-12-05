@@ -35,12 +35,12 @@ public class LivroDAO{
 			}
 			return false;			
 		}catch(SQLException e) {
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				connection.close();
 			}catch(SQLException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}
 		return false;
@@ -65,12 +65,12 @@ public class LivroDAO{
 			}
 			return false;			
 		}catch(SQLException e) {
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				connection.close();
 			}catch(SQLException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}
 		return false;
@@ -91,12 +91,12 @@ public class LivroDAO{
 			}
 			return false;
 		}catch(SQLException e) {
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				connection.close();
 			}catch(SQLException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}
 		return false;
@@ -127,7 +127,7 @@ public class LivroDAO{
 			try {
 				this.connection.close();
 			}catch(SQLException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}		
 		return livros;
@@ -152,12 +152,12 @@ public class LivroDAO{
 				livros.add(livro);
 			}
 		} catch(SQLException e) {
-			System.out.println("");
+			e.printStackTrace();
 		}finally {
 			try {
 				this.connection.close();
 			}catch(SQLException e) {
-				System.out.println("");
+				e.printStackTrace();
 			}
 		}		
 		return livros;
