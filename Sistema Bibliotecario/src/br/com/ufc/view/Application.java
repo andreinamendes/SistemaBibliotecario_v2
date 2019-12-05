@@ -1,9 +1,8 @@
 package br.com.ufc.view;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 import br.com.ufc.controller.*;
-import br.com.ufc.model.Livro;
+import br.com.ufc.model.*;
 
 public class Application {
 	private Scanner obj;
@@ -12,6 +11,8 @@ public class Application {
 	private ServidorController conServidor;
 	private UnidadeController conUnidade;
 	private TelefoneController conTelefone;
+	Aluno alunoLogado = new Aluno();
+	Servidor servidorLogado = new Servidor();
 	
 	public Application() {
 		this.obj = new Scanner(System.in);
@@ -24,7 +25,6 @@ public class Application {
 	
 	public void telaLogin() {
 		int opcao;
-		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n");
 		System.out.println("\n------------Login------------");
 		System.out.println("\n	1 - Aluno");
 		System.out.println("	2 - Servidor");
@@ -48,16 +48,13 @@ public class Application {
 	} 
 	
 	public void loginAluno() {
-		String senha;
-		int matricula;
 		int opcao;
-		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		System.out.println("\n------------Aluno------------");
 		System.out.print("\nMatricula: ");
-		matricula = obj.nextInt();
+		alunoLogado.setMatricula(obj.nextInt());
 		System.out.print("Senha: ");
-		senha = obj.nextLine();
-		senha = obj.nextLine();
+		alunoLogado.setSenha(obj.nextLine());
+		alunoLogado.setSenha(obj.nextLine());
 		System.out.println("\n	1 - Login");
 		System.out.println("	2 - Voltar");
 		System.out.println("\n-----------------------------");
@@ -66,7 +63,7 @@ public class Application {
 		do {
 			opcao = obj.nextInt();
 			if(opcao == 1) {
-				if(conAluno.login(senha, matricula))
+				if(conAluno.login(alunoLogado.getSenha(), alunoLogado.getMatricula()))
 					menuAluno();
 				else {
 					System.out.println("Senha ou matrícula inválida. Tente novamente mais tarde.");
@@ -82,16 +79,13 @@ public class Application {
 	}
 	
 	public void loginServidor() {
-		String senha;
-		int siape;
 		int opcao;
-		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		System.out.println("\n------------Servidor------------");
 		System.out.print("\nSiape: ");
-		siape = obj.nextInt();
+		servidorLogado.setSiape(obj.nextInt());
 		System.out.print("Senha: ");
-		senha = obj.nextLine();
-		senha = obj.nextLine();
+		servidorLogado.setSenha(obj.nextLine());
+		servidorLogado.setSenha(obj.nextLine());
 		System.out.println("\n	1 - Login");
 		System.out.println("	2 - Voltar");
 		System.out.println("\n--------------------------------");
@@ -100,7 +94,7 @@ public class Application {
 		do {
 			opcao = obj.nextInt();
 			if(opcao == 1) {
-				if(conServidor.login(senha, siape))
+				if(conServidor.login(servidorLogado.getSenha(), servidorLogado.getSiape()))
 					menuServidor();
 				else {
 					System.out.println("Senha ou matrícula inválida. Tente novamente mais tarde.");
@@ -129,7 +123,7 @@ public class Application {
 		do {
 			opcao = obj.nextInt();
 			if(opcao == 1) {
-				//Função de listar livros alugados na controller do aluno
+				conAluno.listarEmprestimos(alunoLogado);
 				break;
 			}else if(opcao == 2) {
 				conLivro.buscar();
@@ -144,7 +138,6 @@ public class Application {
 	
 	public void menuServidor() {
 		int opcao;
-		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		System.out.println("\n------------Menu Servidor------------");
 		System.out.println("\n	1 - Listar Acervo");
 		System.out.println("	2 - Recebimetos");
@@ -178,7 +171,6 @@ public class Application {
 	
 	public void cadastros() {
 		int opcao;
-		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		System.out.println("\n---------------Cadastro--------------");
 		System.out.println("\n	1 - Aluno");
 		System.out.println("	2 - Livro");

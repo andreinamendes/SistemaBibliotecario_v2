@@ -123,7 +123,7 @@ public class ServidorDAO{
 	}
 	
 	public Servidor buscar(String senha, int siape) {
-		String query = "SELECT * FROM servidor as S, usuario as U WHERE S.siape = ? AND U.senha = ?;";
+		String query = "SELECT * FROM (servidor JOIN usuario ON id_usr = id) WHERE siape = ? AND senha = ?;";
 		
 		try {
 			this.connection = connectionPSQL.getConnection();
@@ -158,5 +158,4 @@ public class ServidorDAO{
 		}
 		return null;
 	}
-
 }

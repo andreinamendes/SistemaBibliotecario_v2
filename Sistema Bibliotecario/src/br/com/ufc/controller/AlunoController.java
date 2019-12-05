@@ -67,4 +67,8 @@ public class AlunoController {
 		else
 			System.out.println("Erro, aluno não cadastrado.");
 	}
+	
+	public void listarEmprestimos(Aluno aluno) {
+		
+	}
 }

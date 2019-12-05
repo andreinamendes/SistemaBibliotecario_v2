@@ -33,7 +33,9 @@ public class LivroController {
 	
 	public void listarEspecificos(ArrayList<Livro> livros) {
 		for(int a = 0; a < livros.size(); a++) {
-			System.out.println("Livro " + (a + 1) + ": " + livros.get(a));
+			System.out.println("Livro " + (a + 1) + ": " + livros.get(a).getTitulo());
+			System.out.println("\t" + livros.get(a).getEdicao());
+			System.out.println("\t" + livros.get(a).getAno_lancamento());
 		}
 	}
 	
