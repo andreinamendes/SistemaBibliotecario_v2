@@ -141,6 +141,7 @@ public class AlunoDAO{
 				aluno.setId(resultado.getInt("id"));
 				return aluno;
 			}
+			
 		}catch(SQLException e) {
 			System.out.println("");
 		}finally {
