@@ -31,6 +31,11 @@ public class LivroController {
 			System.out.println("Livro não encontrado.");
 	}
 	
+	public Livro buscarRegistro(int reg) {
+		//Livro livro = buscar(reg);
+		return null;
+	}
+	
 	public void listarEspecificos(ArrayList<Livro> livros) {
 		for(int a = 0; a < livros.size(); a++) {
 			System.out.println("Livro " + (a + 1) + ": " + livros.get(a).getTitulo());

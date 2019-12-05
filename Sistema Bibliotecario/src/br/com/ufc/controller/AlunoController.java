@@ -1,5 +1,6 @@
 package br.com.ufc.controller;
 
+import java.text.ParseException;
 import java.util.Scanner;
 
 import br.com.ufc.connection.ConnectionPSQL;
@@ -73,7 +74,7 @@ public class AlunoController {
 			System.out.println("Erro, aluno não cadastrado.");
 	}
 	
-	public void listarEmprestimos(Aluno aluno) {
+	public void listarEmprestimos(Aluno aluno) throws ParseException {
 		conEmprestimo.listarEmprestimos(aluno);
 	}
 }
