@@ -45,18 +45,25 @@ INSERT INTO usuario (nome, senha, email, cpf, data_nasc, rua, numero, cidade, es
 
 --POPULATION ALUNOS
 
-INSERT INTO aluno (matricula, id_usr, curso) VALUES (001, 2, 'Engenharia de Computacao');
-INSERT INTO aluno (matricula, id_usr, curso) VALUES (002, 3, 'Engenharia de Software');
-INSERT INTO aluno (matricula, id_usr, curso) VALUES (003, 4, 'Ciencia da Computacao');
-INSERT INTO aluno (matricula, id_usr, curso) VALUES (004, 5, 'Design Digital');
-INSERT INTO aluno (matricula, id_usr, curso) VALUES (005, 7, 'Redes de Computadores');
-INSERT INTO aluno (matricula, id_usr, curso) VALUES (006, 8, 'Sistemas de Informacao');
+INSERT INTO aluno (matricula, id_usr, curso) VALUES (1, 2, 'Engenharia de Computacao');
+INSERT INTO aluno (matricula, id_usr, curso) VALUES (2, 3, 'Engenharia de Software');
+INSERT INTO aluno (matricula, id_usr, curso) VALUES (3, 4, 'Ciencia da Computacao');
+INSERT INTO aluno (matricula, id_usr, curso) VALUES (4, 5, 'Design Digital');
+INSERT INTO aluno (matricula, id_usr, curso) VALUES (5, 7, 'Redes de Computadores');
+INSERT INTO aluno (matricula, id_usr, curso) VALUES (6, 8, 'Sistemas de Informacao');
 
 --POPULATION SERVIDORES
 INSERT INTO servidor (siape, id_usr, nivel_acc) VALUES (001, 1, 3);
 INSERT INTO servidor (siape, id_usr, nivel_acc) VALUES (002, 6, 3);
 
 --POPULATION EMPRESTIMO
-INSERT INTO emprestimo VALUES(, , '', );
+INSERT INTO emprestimo VALUES(3716, 1, '2019-11-04', '2019-12-04');
+INSERT INTO emprestimo VALUES(7277, 3, '2019-11-10', '2019-12-10');
+INSERT INTO emprestimo VALUES(1928, 2, '2019-11-26', '2019-12-26');
+INSERT INTO emprestimo VALUES(7320, 1, '2019-11-26', '2019-12-26');
+INSERT INTO emprestimo VALUES(1927, 5, '2019-11-26', '2019-12-26');
+INSERT INTO emprestimo VALUES(2192, 6, '2019-11-27', '2019-12-27');
+INSERT INTO emprestimo VALUES(3827, 4, '2019-11-29', '2019-12-29');
+INSERT INTO emprestimo VALUES(9283, 5, '2019-11-29', '2019-12-29');
 
 --POPULATION RESERVA
