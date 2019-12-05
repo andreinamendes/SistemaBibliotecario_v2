@@ -117,7 +117,7 @@ public class AlunoDAO{
 	}
 
 	public Aluno buscar(String senha, int matricula) {
-		String query = "SELECT * FROM aluno as A, usuario as U WHERE A.matriula = ? AND U.senha = ?;";
+		String query = "SELECT * FROM (aluno JOIN usuario ON id_usr = id) WHERE matricula = ? AND senha = ?;";
 		
 		try {
 			this.connection = connectionPSQL.getConnection();
@@ -140,8 +140,7 @@ public class AlunoDAO{
 				aluno.setSenha(resultado.getString("senha"));
 				aluno.setId(resultado.getInt("id"));
 				return aluno;
-			}
-			
+			}			
 		}catch(SQLException e) {
 			System.out.println("");
 		}finally {
