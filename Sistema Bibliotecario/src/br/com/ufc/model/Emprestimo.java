@@ -24,7 +24,7 @@ public class Emprestimo {
 		this.matricula = matricula;
 	}
 	public Date getDataEmp() throws ParseException {
-		Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dataEmp);
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dataEmp);
 		return date;
 	}
 	public String getStringDataEmp() {

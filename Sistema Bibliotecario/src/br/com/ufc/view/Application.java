@@ -1,7 +1,6 @@
 package br.com.ufc.view;
 
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Scanner;
 import br.com.ufc.controller.*;
 import br.com.ufc.model.*;
@@ -9,22 +8,14 @@ import br.com.ufc.model.*;
 public class Application {
 	private Scanner obj;
 	private AlunoController conAluno;
-	private LivroController conLivro;
 	private ServidorController conServidor;
-	private UnidadeController conUnidade;
-	private TelefoneController conTelefone;
-	private EmprestimoController conEmprestimo;
 	Aluno alunoLogado = new Aluno();
 	Servidor servidorLogado = new Servidor();
 	
 	public Application() {
 		this.obj = new Scanner(System.in);
 		this.conAluno = new AlunoController();
-		this.conLivro = new LivroController();
 		this.conServidor = new ServidorController();
-		this.conUnidade = new UnidadeController();
-		this.conTelefone = new TelefoneController();
-		this.conEmprestimo = new EmprestimoController();
 	}
 	
 	public void telaLogin() throws ParseException {
@@ -167,15 +158,18 @@ public class Application {
 			opcao = obj.nextInt();
 			if(opcao == 1) {
 				conServidor.listarAcervo();
+				menuServidor();
 				break;
 			}else if(opcao == 2) {
 				conServidor.receberEmprestimo();
+				menuServidor();
 				break;
 			}else if(opcao == 3) {
 				cadastros();
 				break;
 			}else if(opcao == 4) {
 				conServidor.buscarLivro();
+				menuServidor();
 				break;
 			}else if(opcao == 5) {
 				telaLogin();
@@ -185,22 +179,30 @@ public class Application {
 		}while(true);
 	}
 	
-	public void cadastros() {
+	public void cadastros() throws ParseException {
 		int opcao;
 		System.out.println("\n---------------Cadastro--------------");
 		System.out.println("\n	1 - Aluno");
 		System.out.println("	2 - Livro");
-		System.out.println("    3 - Emprestimo");
+		System.out.println("	3 - Emprestimo");
+		System.out.println("	4 - Voltar");
 		System.out.println("\n-------------------------------------");
 		System.out.print("\nDigite a opção desejada: ");
 		
 		do {
 			opcao = obj.nextInt();
-			if(opcao == 1)
+			if(opcao == 1) {
 				conServidor.cadastrarAluno();
-			else if(opcao == 2)
+				cadastros();
+			}else if(opcao == 2) {
 				conServidor.cadastrarLivro();
-			else
+				cadastros();
+			}else if(opcao == 3) {
+				conServidor.alugar();
+				cadastros();
+			}else if(opcao == 4) {
+				menuServidor();
+			}else
 				System.out.print("Opção inválida. Digite novamente: ");
 		}while(true);
 	}

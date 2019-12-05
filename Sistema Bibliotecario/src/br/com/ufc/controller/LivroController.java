@@ -61,6 +61,7 @@ public class LivroController {
 		livro.setEdicao(obj.nextInt());
 		System.out.print("Ano de Lançamento: ");
 		livro.setAno_lancamento(obj.nextLine());
+		livro.setAno_lancamento(obj.nextLine());
 		System.out.print("Quantidade de livros: ");
 		livro.setQuantidade(obj.nextInt());
 		if(!livrodao.inserir(livro))

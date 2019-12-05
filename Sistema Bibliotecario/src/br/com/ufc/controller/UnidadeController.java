@@ -1,5 +1,6 @@
 package br.com.ufc.controller;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import br.com.ufc.connection.ConnectionPSQL;
@@ -33,5 +34,9 @@ public class UnidadeController {
 	public Livro buscarRegistro(int reg) {
 		Livro livro = unidadedao.buscar(reg);
 		return livro;
+	}
+	
+	public ArrayList<Unidade> buscarNumAcv(int numacv){
+		return unidadedao.listaUnidades(numacv);
 	}
 }

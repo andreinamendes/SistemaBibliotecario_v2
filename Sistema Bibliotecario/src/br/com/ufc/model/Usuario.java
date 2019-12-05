@@ -64,7 +64,7 @@ public class Usuario {
 	}
 	
 	public Date getDataNasc() throws ParseException {
-		Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dataNasc);
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dataNasc);
 		return date;
 	}
 	

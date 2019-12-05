@@ -48,6 +48,7 @@ public class AlunoDAO{
 				ResultSet resultado = std.executeQuery();
 				while(resultado.next()) {
 					//INSERT INTO ALUNO
+					usuario.setId(resultado.getInt("id"));
 					int id = resultado.getInt("id");
 					std = connection.prepareStatement(sql3);
 					std.setInt(1, aluno.getMatricula());
@@ -152,5 +153,40 @@ public class AlunoDAO{
 		}
 		return null;
 	}
-
+	
+	public Aluno buscar(int matricula) {
+		String query = "SELECT * FROM (aluno JOIN usuario ON id_usr = id) WHERE matricula = ?;";
+		
+		try {
+			this.connection = connectionPSQL.getConnection();
+			PreparedStatement std = connection.prepareStatement(query);
+			std.setInt(1, matricula);
+			ResultSet resultado = std.executeQuery();
+			
+			while(resultado.next()) {
+				Aluno aluno = new Aluno();
+				aluno.setCidade(resultado.getString("cidade"));
+				aluno.setCpf(resultado.getString("cpf"));
+				aluno.setCurso(resultado.getString("curso"));
+				aluno.setEmail(resultado.getString("email"));
+				aluno.setEstado(resultado.getString("estado"));
+				aluno.setMatricula(resultado.getInt("matricula"));
+				aluno.setNome(resultado.getString("nome"));
+				aluno.setRua(resultado.getString("rua"));
+				aluno.setNumero(resultado.getString("numero"));
+				aluno.setSenha(resultado.getString("senha"));
+				aluno.setId(resultado.getInt("id"));
+				return aluno;
+			}			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				connection.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
 }

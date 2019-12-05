@@ -1,7 +1,10 @@
 package br.com.ufc.controller;
 
+import java.sql.Date;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import br.com.ufc.connection.*;
 import br.com.ufc.dao.*;
@@ -48,4 +51,59 @@ public class EmprestimoController {
 			e.printStackTrace();
 		}
 	}	
+	
+	public void removerEmprestimo(Emprestimo emprestimo) {
+		emprestimodao.remover(emprestimo.getNumReg());
+	}
+	
+	public int getDebito(Emprestimo emprestimo) {
+		return (int) emprestimodao.getDebito(emprestimo);
+	}
+	
+	public ArrayList<Emprestimo> getEmprestimos() {
+		return emprestimodao.getEmprestimos();
+	}
+	
+	public String pegarData(){
+        java.util.Date dataAgora = new java.util.Date();
+        SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
+        return formatador.format(dataAgora);
+    }
+	
+	public void alugar(Aluno aluno, Unidade unidade) {
+		Emprestimo emprestimo = new Emprestimo();
+		emprestimo.setMatricula(aluno.getMatricula());
+		emprestimo.setNumReg(unidade.getNumReg());
+		String data = pegarData();
+		emprestimo.setDataEmp(data);
+		try {
+			java.util.Date date = emprestimo.getDataEmp();
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(date);
+			cal.add(Calendar.DAY_OF_MONTH, 30);
+			date = cal.getTime();
+			SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
+			String dataDevo = formatador.format(date);
+			emprestimo.setDataDevo(dataDevo);
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		if(emprestimodao.inserir(emprestimo))
+			System.out.println("Alugado com sucesso!");
+	}
+	
+	public void reservar(int numacv, int matricula) {
+		Reserva reserva = new Reserva();
+		reserva.setNumAcv(numacv);
+		reserva.setMatricula(matricula);
+		reserva.setDataRsv(pegarData());
+		try {
+			if(emprestimodao.reservar(reserva))
+				System.out.println("Reservado com sucesso!");
+		}catch(ParseException e) {
+			e.printStackTrace();
+		}
+	}
 }

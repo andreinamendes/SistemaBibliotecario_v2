@@ -3,7 +3,6 @@ package br.com.ufc.controller;
 import br.com.ufc.connection.ConnectionPSQL;
 import br.com.ufc.dao.*;
 import br.com.ufc.model.*;
-import br.com.ufc.controller.LivroController;
 
 public class TelefoneController {
 	private ConnectionPSQL connectionPSQL;

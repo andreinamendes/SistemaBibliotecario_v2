@@ -7,7 +7,6 @@ import java.util.Scanner;
 import br.com.ufc.connection.ConnectionPSQL;
 import br.com.ufc.dao.*;
 import br.com.ufc.model.*;
-import br.com.ufc.controller.*;
 
 public class AlunoController {
 	private ConnectionPSQL connectionPSQL;
@@ -46,8 +45,10 @@ public class AlunoController {
 		usuario.setEmail(obj.nextLine());
 		System.out.print("CPF: ");
 		usuario.setCpf(obj.nextLine());
+		System.out.print("Data de Nascimento(yyyy-mm-dd): ");
+		usuario.setDataNasc(obj.nextLine());
 		System.out.print("Rua: ");
-		usuario.setCpf(obj.nextLine());
+		usuario.setRua(obj.nextLine());
 		System.out.print("Numero: ");
 		usuario.setNumero(obj.nextLine());
 		System.out.print("Cidade: ");
@@ -63,18 +64,22 @@ public class AlunoController {
 		qtd = obj.nextInt();
 		for(int a = 0; a < qtd; a++) {
 			Telefone telefone = new Telefone();
-			System.out.println("DDD: ");
+			System.out.print("DDD: ");
 			telefone.setDdd(obj.nextLine());
 			telefone.setDdd(obj.nextLine());
-			System.out.println("Número, lembre-se do 9: ");
-			telefone.setNumero(obj.nextLine());
+			System.out.print("Número, lembre-se do 9: ");
 			telefone.setNumero(obj.nextLine());
 			usuario.setTelefone(telefone);
 		}
-		if(alunodao.inserir(usuario, aluno) && conTelefone.inserir(usuario))
-			System.out.println("Aluno " + usuario.getNome() + " cadastrado com sucesso!");
-		else
+		if(alunodao.inserir(usuario, aluno)) {
+			if(conTelefone.inserir(usuario)) {
+				System.out.println("Aluno " + usuario.getNome() + " cadastrado com sucesso!");
+			}else {
+				System.out.println("Erro, aluno não cadastrado.");
+			}
+		}else {
 			System.out.println("Erro, aluno não cadastrado.");
+		}
 	}
 	
 	public void buscarLivro() {
@@ -90,7 +95,6 @@ public class AlunoController {
 		return false;
 	}
 	
-	
 	public void renovarEmprestimo(Aluno aluno) {
 		int id;
 		System.out.print("Digite o número de registro do livro a ser renovado: ");
@@ -103,5 +107,12 @@ public class AlunoController {
 				return;
 			}
 		}
+	}
+
+	public Aluno buscar(int matricula) {
+		Aluno aluno = alunodao.buscar(matricula);
+		if(aluno != null)
+			return aluno;
+		return null;
 	}
 }

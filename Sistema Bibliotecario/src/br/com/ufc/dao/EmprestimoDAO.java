@@ -79,16 +79,19 @@ public class EmprestimoDAO {
 		return false;
 	}
 	
-	public double getDebito(Emprestimo emprestimo) throws ParseException {
-		String sql = "SELECT * FROM debitos WHERE num_reg = ?, matricula = ?, data_emp = ?;";
+	public double getDebito(Emprestimo emprestimo) {
+		String sql = "SELECT * FROM debitos WHERE num_reg = ? AND matricula = ? AND data_emp = ?;";
 		
 		try {
 			this.connection = connectionPSQL.getConnection();
 			PreparedStatement std = connection.prepareStatement(sql);
 			std.setInt(1, emprestimo.getNumReg());
 			std.setInt(2, emprestimo.getMatricula());
-			std.setDate(3, new java.sql.Date((emprestimo.getDataEmp()).getTime()));
-			
+			try {
+				std.setDate(3, new java.sql.Date((emprestimo.getDataEmp()).getTime()));
+			}catch(ParseException e) {
+				e.printStackTrace();
+			}
 			ResultSet resultado = std.executeQuery();
 			while(resultado.next()) {
 				return resultado.getDouble("debito");
@@ -198,5 +201,39 @@ public class EmprestimoDAO {
 		if(verificador)
 			return emprestimos;
 		return null;
-	}	
+	}
+	
+	public ArrayList<Emprestimo> getEmprestimos(){
+		ArrayList<Emprestimo> emprestimos = new ArrayList<Emprestimo>();
+		String sql = "SELECT * FROM emprestimo;";
+		boolean verificador = false;
+		try {
+			this.connection = connectionPSQL.getConnection();
+			PreparedStatement std = connection.prepareStatement(sql);
+			ResultSet resultado = std.executeQuery();
+			while(resultado.next()) {
+				verificador = true;
+				Emprestimo emprestimo = new Emprestimo();
+				emprestimo.setNumReg(resultado.getInt("num_reg"));
+				emprestimo.setMatricula(resultado.getInt("matricula"));
+				emprestimo.setQtdReno(resultado.getInt("qtd_reno"));
+				emprestimo.setDataEmp(resultado.getString("data_emp"));
+				emprestimo.setDataDevo(resultado.getString("data_devo"));
+				
+				emprestimos.add(emprestimo);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				connection.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if(verificador)
+			return emprestimos;
+		return null;
+	}
+	
 }

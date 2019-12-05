@@ -8,6 +8,7 @@ public class Reserva {
 	int matricula;
     int numAcv;
     String dataRsv;
+    
 	public int getMatricula() {
 		return matricula;
 	}
@@ -21,7 +22,7 @@ public class Reserva {
 		this.numAcv = numAcv;
 	}
 	public Date getDataRsv() throws ParseException {
-		Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dataRsv);
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dataRsv);
 		return date;
 	}
 	public void setDataRsv(String dataRsv) {
