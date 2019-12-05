@@ -1,7 +1,6 @@
 package br.com.ufc.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -54,13 +53,13 @@ public class EmprestimoDAO {
 		return false;
 	}
 	
-	public boolean remover(Emprestimo emprestimo) {
+	public boolean remover(int numReg) {
 		String sql = "DELETE FROM emprestimo WHERE num_reg = ?;";
 		
 		try {
 			this.connection = connectionPSQL.getConnection();
 			PreparedStatement std = connection.prepareStatement(sql);
-			std.setInt(1, emprestimo.getNumReg());
+			std.setInt(1, numReg);
 			int execucao = std.executeUpdate();
 			std.close();
 			if(execucao > 0) {
@@ -77,6 +76,32 @@ public class EmprestimoDAO {
 			}
 		}		
 		return false;
+	}
+	
+	public double getDebito(Emprestimo emprestimo) throws ParseException {
+		String sql = "SELECT * FROM debitos WHERE num_reg = ?, matricula = ?, data_emp = ?;";
+		
+		try {
+			this.connection = connectionPSQL.getConnection();
+			PreparedStatement std = connection.prepareStatement(sql);
+			std.setInt(1, emprestimo.getNumReg());
+			std.setInt(2, emprestimo.getMatricula());
+			std.setDate(3, new java.sql.Date((emprestimo.getDataEmp()).getTime()));
+			
+			ResultSet resultado = std.executeQuery();
+			while(resultado.next()) {
+				return resultado.getDouble("debito");
+			}			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				connection.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}		
+		return 0.0;
 	}
 	
 	public boolean atualizar(Emprestimo emprestimo) throws ParseException {
