@@ -43,6 +43,7 @@ public class EmprestimoController {
 	public void renovarEmprestimo(Emprestimo emprestimo) {
 		try {
 			emprestimodao.atualizar(emprestimo);
+			
 		}catch(ParseException e) {
 			e.printStackTrace();
 		}
