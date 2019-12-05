@@ -2,11 +2,12 @@ package br.com.ufc.view;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 import br.com.ufc.connection.ConnectionPSQL;
 
 public class Main {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 //		ConnectionPSQL connection = new ConnectionPSQL();
 //		Connection a = connection.getConnection();
 //		System.out.println("Conectado");

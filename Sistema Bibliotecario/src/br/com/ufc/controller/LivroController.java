@@ -32,8 +32,8 @@ public class LivroController {
 	}
 	
 	public Livro buscarRegistro(int reg) {
-		//Livro livro = buscar(reg);
-		return null;
+		Livro livro = livrodao.buscar(reg);
+		return livro;
 	}
 	
 	public void listarEspecificos(ArrayList<Livro> livros) {

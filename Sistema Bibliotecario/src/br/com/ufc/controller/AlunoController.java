@@ -74,7 +74,9 @@ public class AlunoController {
 			System.out.println("Erro, aluno não cadastrado.");
 	}
 	
-	public void listarEmprestimos(Aluno aluno) throws ParseException {
-		conEmprestimo.listarEmprestimos(aluno);
+	public boolean listarEmprestimos(Aluno aluno) throws ParseException {
+		if(conEmprestimo.listarEmprestimos(aluno))
+			return true;
+		return false;
 	}
 }

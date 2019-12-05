@@ -5,11 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Emprestimo {
-	int numReg;
-	int matricula;
-    String dataEmp;
-    String dataDevo;
-    int qtdReno;
+	private int numReg;
+	private int matricula;
+    private String dataEmp;
+    private String dataDevo;
+    private int qtdReno;
     
 	public int getNumReg() {
 		return numReg;
@@ -27,12 +27,18 @@ public class Emprestimo {
 		Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dataEmp);
 		return date;
 	}
+	public String getStringDataEmp() {
+		return this.dataEmp;
+	}
 	public void setDataEmp(String dataEmp) {
 		this.dataEmp = dataEmp;
 	}
 	public Date getDataDevo() throws ParseException {
-		Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dataDevo);
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dataDevo);
 		return date;
+	}
+	public String getStringDataDevo() {
+		return this.dataDevo;
 	}
 	public void setDataDevo(String dataDevo) {
 		this.dataDevo = dataDevo;

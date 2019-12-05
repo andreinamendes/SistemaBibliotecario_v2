@@ -1,5 +1,7 @@
 package br.com.ufc.view;
 
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import br.com.ufc.controller.*;
 import br.com.ufc.model.*;
@@ -11,6 +13,7 @@ public class Application {
 	private ServidorController conServidor;
 	private UnidadeController conUnidade;
 	private TelefoneController conTelefone;
+	private EmprestimoController conEmprestimo;
 	Aluno alunoLogado = new Aluno();
 	Servidor servidorLogado = new Servidor();
 	
@@ -21,9 +24,10 @@ public class Application {
 		this.conServidor = new ServidorController();
 		this.conUnidade = new UnidadeController();
 		this.conTelefone = new TelefoneController();
+		this.conEmprestimo = new EmprestimoController();
 	}
 	
-	public void telaLogin() {
+	public void telaLogin() throws ParseException {
 		int opcao;
 		System.out.println("\n------------Login------------");
 		System.out.println("\n	1 - Aluno");
@@ -47,7 +51,7 @@ public class Application {
 		}while(true);
 	} 
 	
-	public void loginAluno() {
+	public void loginAluno() throws ParseException {
 		int opcao;
 		System.out.println("\n------------Aluno------------");
 		System.out.print("\nMatricula: ");
@@ -78,7 +82,7 @@ public class Application {
 		}while(true);
 	}
 	
-	public void loginServidor() {
+	public void loginServidor() throws ParseException {
 		int opcao;
 		System.out.println("\n------------Servidor------------");
 		System.out.print("\nSiape: ");
@@ -110,9 +114,8 @@ public class Application {
 		}while(true);
 	}
 	
-	public void menuAluno() {
+	public void menuAluno() throws ParseException {
 		int opcao;
-		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		System.out.println("\n------------Menu Aluno------------");
 		System.out.println("\n	1 - Meus livros");
 		System.out.println("	2 - Pesquisar livros");
@@ -123,7 +126,19 @@ public class Application {
 		do {
 			opcao = obj.nextInt();
 			if(opcao == 1) {
-				conAluno.listarEmprestimos(alunoLogado);
+				if(!conAluno.listarEmprestimos(alunoLogado))
+					menuAluno();
+				else {
+					int opcao1;
+					System.out.println("\n\t 1 - Renovar");
+					System.out.println("\t 2 - Voltar");
+					System.out.print("\nDigite a opção: ");
+					opcao1 = obj.nextInt();
+					if(opcao1 == 1)
+						renovarEmprestimo();
+					else
+						menuAluno();
+				}
 				break;
 			}else if(opcao == 2) {
 				conLivro.buscar();
@@ -136,7 +151,15 @@ public class Application {
 		}while(true);
 	}
 	
-	public void menuServidor() {
+	public void renovarEmprestimo() {
+		int id;
+		System.out.print("Digite o id do emprestimo a ser renovado: ");
+		id = obj.nextInt();
+		ArrayList<Emprestimo> emprestimos = conEmprestimo.getEmprestimos(alunoLogado);
+		conEmprestimo.renovarEmprestimo(emprestimos.get(id - 1));
+	}
+	
+	public void menuServidor() throws ParseException {
 		int opcao;
 		System.out.println("\n------------Menu Servidor------------");
 		System.out.println("\n	1 - Listar Acervo");

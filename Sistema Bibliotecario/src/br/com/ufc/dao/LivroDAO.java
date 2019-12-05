@@ -105,13 +105,14 @@ public class LivroDAO{
 	public ArrayList<Livro> buscar(String key){
 		String sql = "SELECT * FROM livro WHERE titulo ILIKE ?";
 		ArrayList<Livro> livros = new ArrayList<Livro>();
-
+		boolean verificador = false;
 		try {
 			this.connection = connectionPSQL.getConnection();
 			PreparedStatement std = connection.prepareStatement(sql);
 			std.setString(1, "%" + key + "%");
 			ResultSet resultado = std.executeQuery();			
 			while(resultado.next()) {
+				verificador = true;
 				Livro livro = new Livro();
 				livro.setNumAcv(resultado.getInt("num_acv"));
 				livro.setTitulo(resultado.getString("titulo"));
@@ -130,7 +131,9 @@ public class LivroDAO{
 				e.printStackTrace();
 			}
 		}		
-		return livros;
+		if(verificador)
+			return livros;
+		return null;
 	}
 	
 	public Livro buscar(int numReg) {

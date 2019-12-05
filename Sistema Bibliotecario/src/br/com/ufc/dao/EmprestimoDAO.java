@@ -141,14 +141,15 @@ public class EmprestimoDAO {
 	
 	public ArrayList<Emprestimo> listarEmprestimos(Aluno aluno){
 		ArrayList<Emprestimo> emprestimos = new ArrayList<Emprestimo>();
-		String sql = "SELECT * FROM emprestimos WHERE matricula = ?;";
-		
+		String sql = "SELECT * FROM emprestimo WHERE matricula = ?;";
+		boolean verificador = false;
 		try {
 			this.connection = connectionPSQL.getConnection();
 			PreparedStatement std = connection.prepareStatement(sql);
 			std.setInt(1, aluno.getMatricula());
 			ResultSet resultado = std.executeQuery();
 			while(resultado.next()) {
+				verificador = true;
 				Emprestimo emprestimo = new Emprestimo();
 				emprestimo.setNumReg(resultado.getInt("num_reg"));
 				emprestimo.setMatricula(resultado.getInt("matricula"));
@@ -157,7 +158,7 @@ public class EmprestimoDAO {
 				emprestimo.setDataDevo(resultado.getString("data_devo"));
 				
 				emprestimos.add(emprestimo);
-			}			
+			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -167,6 +168,8 @@ public class EmprestimoDAO {
 				e.printStackTrace();
 			}
 		}
-		return emprestimos;
+		if(verificador)
+			return emprestimos;
+		return null;
 	}	
 }
