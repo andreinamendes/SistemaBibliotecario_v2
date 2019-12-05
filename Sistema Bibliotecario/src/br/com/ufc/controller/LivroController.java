@@ -20,10 +20,7 @@ public class LivroController {
 		this.conUnidade = new UnidadeController();
 	}
 	
-	public void buscar(){
-		String titulo;
-		System.out.print("Digite o titulo do livro que deseja buscar: ");
-		titulo = obj.nextLine();
+	public void buscar(String titulo){
 		ArrayList<Livro> livros = livrodao.buscar(titulo);
 		if(livros != null)
 			listarEspecificos(livros);
@@ -31,11 +28,8 @@ public class LivroController {
 			System.out.println("Livro não encontrado.");
 	}
 	
-	public void getBusca() {
-	
-	}
-	
 	public void listarEspecificos(ArrayList<Livro> livros) {
+		System.out.println("");
 		for(int a = 0; a < livros.size(); a++) {
 			System.out.println("Livro " + (a + 1) + ": " + livros.get(a).getTitulo());
 			System.out.println("\t " + livros.get(a).getEdicao());

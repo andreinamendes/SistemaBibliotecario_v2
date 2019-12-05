@@ -135,38 +135,21 @@ public class Application {
 					System.out.print("\nDigite a opção: ");
 					opcao1 = obj.nextInt();
 					if(opcao1 == 1) {
-						renovarEmprestimo();
+						conAluno.renovarEmprestimo(alunoLogado);
 						menuAluno();
 					}else
 						menuAluno();
 				}
 				break;
 			}else if(opcao == 2) {
-				
+				conAluno.buscarLivro();
+				menuAluno();
 			}else if(opcao == 3) {
 				telaLogin();
 				break;
 			}else 
 				System.out.print("Opção inválida, digite novamente: ");
 		}while(true);
-	}
-	
-	public void alugarLivro() {
-		
-	}
-	
-	public void renovarEmprestimo() {
-		int id;
-		System.out.print("Digite o número de registro do livro a ser renovado: ");
-		id = obj.nextInt();
-		ArrayList<Emprestimo> emprestimos = conEmprestimo.getEmprestimos(alunoLogado);
-		for(int a = 0; a < emprestimos.size(); a++) {
-			if(emprestimos.get(a).getNumReg() == id) {
-				conEmprestimo.renovarEmprestimo(emprestimos.get(a));
-				System.out.println("Renovado com sucesso!\n");
-				return;
-			}
-		}
 	}
 	
 	public void menuServidor() throws ParseException {
@@ -186,13 +169,13 @@ public class Application {
 				conServidor.listarAcervo();
 				break;
 			}else if(opcao == 2) {
-				//Função de recebimento na controller do servidor
+				conServidor.receberEmprestimo();
 				break;
 			}else if(opcao == 3) {
 				cadastros();
 				break;
 			}else if(opcao == 4) {
-				conLivro.buscar();
+				conServidor.buscarLivro();
 				break;
 			}else if(opcao == 5) {
 				telaLogin();
@@ -207,6 +190,7 @@ public class Application {
 		System.out.println("\n---------------Cadastro--------------");
 		System.out.println("\n	1 - Aluno");
 		System.out.println("	2 - Livro");
+		System.out.println("    3 - Emprestimo");
 		System.out.println("\n-------------------------------------");
 		System.out.print("\nDigite a opção desejada: ");
 		
