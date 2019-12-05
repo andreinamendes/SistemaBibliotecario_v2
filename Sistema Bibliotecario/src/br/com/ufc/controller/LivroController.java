@@ -34,18 +34,21 @@ public class LivroController {
 	public void listarEspecificos(ArrayList<Livro> livros) {
 		for(int a = 0; a < livros.size(); a++) {
 			System.out.println("Livro " + (a + 1) + ": " + livros.get(a).getTitulo());
-			System.out.println("\t" + livros.get(a).getEdicao());
-			System.out.println("\t" + livros.get(a).getAno_lancamento());
+			System.out.println("\t " + livros.get(a).getEdicao());
+			System.out.println("\t " + livros.get(a).getAno_lancamento());
 		}
 	}
 	
 	public void listarAll() {
 		ArrayList<Livro> livros = livrodao.listarLivros();
-		if(livros != null)
+		if(livros != null) {
+			System.out.println("");
 			for(int a = 0; a < livros.size(); a++) {
-				System.out.println("Livro " + (a + 1) + ": " + livros.get(a));
+				System.out.println("Livro " + (a + 1) + ": " + livros.get(a).getTitulo());
+				System.out.println("\t " + livros.get(a).getEdicao());
+				System.out.println("\t " + livros.get(a).getAno_lancamento());
 			}
-		else
+		}else
 			System.out.println("Nenhum livro no acervo.");
 	}
 	

@@ -14,7 +14,6 @@ public class Application {
 	Aluno alunoLogado = new Aluno();
 	Servidor servidorLogado = new Servidor();
 	
-
 	public Application() {
 		this.obj = new Scanner(System.in);
 		this.conAluno = new AlunoController();

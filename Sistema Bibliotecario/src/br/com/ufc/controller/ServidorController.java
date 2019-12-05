@@ -12,8 +12,8 @@ public class ServidorController {
 	private AlunoController conAluno;
 	
 	public ServidorController() {
-		this.servidordao = new ServidorDAO(connectionPSQL);
 		this.connectionPSQL = new ConnectionPSQL();
+		this.servidordao = new ServidorDAO(connectionPSQL);
 		this.conLivro = new LivroController();
 		this.conAluno = new AlunoController();
 	}

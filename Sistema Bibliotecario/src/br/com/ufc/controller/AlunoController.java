@@ -5,19 +5,21 @@ import java.util.Scanner;
 import br.com.ufc.connection.ConnectionPSQL;
 import br.com.ufc.dao.*;
 import br.com.ufc.model.*;
-import br.com.ufc.controller.TelefoneController;
+import br.com.ufc.controller.*;
 
 public class AlunoController {
 	private ConnectionPSQL connectionPSQL;
 	private AlunoDAO alunodao;
 	private Scanner obj;
-	private TelefoneController tel;
+	private TelefoneController conTelefone;
+	private EmprestimoController conEmprestimo;
 	
 	public AlunoController() {
 		this.connectionPSQL = new ConnectionPSQL();
 		this.alunodao = new AlunoDAO(connectionPSQL);
 		this.obj = new Scanner(System.in);
-		this.tel = new TelefoneController();
+		this.conTelefone = new TelefoneController();
+		this.conEmprestimo = new EmprestimoController();
 	}
 	
 	public boolean login(String senha, int matricula) {
@@ -52,23 +54,26 @@ public class AlunoController {
 		aluno.setMatricula(obj.nextInt());
 		System.out.print("Curso: ");
 		aluno.setCurso(obj.nextLine());
+		aluno.setCurso(obj.nextLine());
 		System.out.print("Quantos telefones deseja inserir? ");
 		qtd = obj.nextInt();
 		for(int a = 0; a < qtd; a++) {
 			Telefone telefone = new Telefone();
 			System.out.println("DDD: ");
 			telefone.setDdd(obj.nextLine());
+			telefone.setDdd(obj.nextLine());
 			System.out.println("Número, lembre-se do 9: ");
+			telefone.setNumero(obj.nextLine());
 			telefone.setNumero(obj.nextLine());
 			usuario.setTelefone(telefone);
 		}
-		if(alunodao.inserir(usuario, aluno) && tel.inserir(usuario))
+		if(alunodao.inserir(usuario, aluno) && conTelefone.inserir(usuario))
 			System.out.println("Aluno " + usuario.getNome() + " cadastrado com sucesso!");
 		else
 			System.out.println("Erro, aluno não cadastrado.");
 	}
 	
 	public void listarEmprestimos(Aluno aluno) {
-		
+		conEmprestimo.listarEmprestimos(aluno);
 	}
 }
