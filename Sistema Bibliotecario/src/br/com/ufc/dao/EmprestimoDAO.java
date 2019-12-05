@@ -62,6 +62,7 @@ public class EmprestimoDAO {
 			std.setInt(1, numReg);
 			int execucao = std.executeUpdate();
 			std.close();
+			
 			if(execucao > 0) {
 				return true;
 			}
