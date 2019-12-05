@@ -18,7 +18,9 @@ public class EmprestimoController {
 	public void listarEmprestimos(Aluno aluno) {
 		ArrayList<Emprestimo> emprestimos = emprestimodao.listarEmprestimos(aluno);
 		if(emprestimos != null) {
-			
+			for() {
+				
+			}
 		}
 	}
 }
