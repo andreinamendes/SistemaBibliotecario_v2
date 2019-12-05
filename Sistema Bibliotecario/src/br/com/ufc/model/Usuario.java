@@ -1,6 +1,5 @@
 package br.com.ufc.model;
 
-import java.util.List;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ public abstract class Usuario {
 	private String rua;
 	private String cidade;
 	private String estado;
-	private int numero;
+	private String numero;
 	
 	public Usuario() {
 		this.telefone = new ArrayList<Telefone>();
@@ -55,11 +54,11 @@ public abstract class Usuario {
 		this.estado = estado;
 	}
 	
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 	
-	public void setNumero(int numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 	

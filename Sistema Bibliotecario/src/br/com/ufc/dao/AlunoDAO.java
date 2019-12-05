@@ -37,7 +37,7 @@ public class AlunoDAO{
 				System.out.println("");
 			}
 			std.setString(6, usuario.getRua());
-			std.setString(7, Integer.toString(usuario.getNumero()));
+			std.setString(7, usuario.getNumero());
 			std.setString(8, usuario.getCidade());
 			std.setString(9, usuario.getEstado());
 			int execucao = std.executeUpdate();
@@ -116,9 +116,41 @@ public class AlunoDAO{
 		return false;
 	}
 
-	/*public ArrayList<Aluno> buscar(String t) {
-		// TODO Auto-generated method stub
+	public Aluno buscar(String senha, int matricula) {
+		String query = "SELECT * FROM aluno as A, usuario as U WHERE A.matriula = ? AND U.senha = ?;";
+		
+		try {
+			this.connection = connectionPSQL.getConnection();
+			PreparedStatement std = connection.prepareStatement(query);
+			std.setInt(1, matricula);
+			std.setString(2, senha);
+			ResultSet resultado = std.executeQuery();
+			
+			while(resultado.next()) {
+				Aluno aluno = new Aluno();
+				aluno.setCidade(resultado.getString("cidade"));
+				aluno.setCpf(resultado.getString("cpf"));
+				aluno.setCurso(resultado.getString("curso"));
+				aluno.setEmail(resultado.getString("email"));
+				aluno.setEstado(resultado.getString("estado"));
+				aluno.setMatricula(resultado.getInt("matricula"));
+				aluno.setNome(resultado.getString("nome"));
+				aluno.setRua(resultado.getString("rua"));
+				aluno.setNumero(resultado.getString("numero"));
+				aluno.setSenha(resultado.getString("senha"));
+				aluno.setId(resultado.getInt("id"));
+				return aluno;
+			}
+		}catch(SQLException e) {
+			System.out.println("");
+		}finally {
+			try {
+				connection.close();
+			}catch(SQLException e) {
+				System.out.println("");
+			}
+		}
 		return null;
-	}*/
-	
+	}
+
 }

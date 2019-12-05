@@ -1,19 +1,30 @@
 package br.com.ufc.view;
 
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import br.com.ufc.controller.*;
+import br.com.ufc.model.Livro;
 
 public class Application {
-	private Scanner obj = new Scanner(System.in);
-	private AlunoController conALuno = new AlunoController();
-	private LivroController conLivro = new LivroController();
-	private ServidorController conServidor = new ServidorController();
-	private UnidadeController conUnidade = new UnidadeController();
-	private TelefoneController conTelefone = new TelefoneController();
+	private Scanner obj;
+	private AlunoController conAluno;
+	private LivroController conLivro;
+	private ServidorController conServidor;
+	private UnidadeController conUnidade;
+	private TelefoneController conTelefone;
+	
+	public Application() {
+		this.obj = new Scanner(System.in);
+		this.conAluno = new AlunoController();
+		this.conLivro = new LivroController();
+		this.conServidor = new ServidorController();
+		this.conUnidade = new UnidadeController();
+		this.conTelefone = new TelefoneController();
+	}
 	
 	public void telaLogin() {
 		int opcao;
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n");
 		System.out.println("\n------------Login------------");
 		System.out.println("\n	1 - Aluno");
 		System.out.println("	2 - Servidor");
@@ -24,14 +35,7 @@ public class Application {
 		do {
 			opcao = obj.nextInt();
 			if(opcao == 1) {
-				try {
-					Runtime.getRuntime().exec("clear");
-					loginAluno();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
+				loginAluno();
 				break;
 			}else if(opcao == 2) {
 				loginServidor();
@@ -39,20 +43,20 @@ public class Application {
 			}else if(opcao == 3)
 				System.exit(0);
 			else 
-				System.out.println("Opção inválida, digite novamente: ");
+				System.out.print("Opção inválida, digite novamente: ");
 		}while(true);
 	} 
 	
 	public void loginAluno() {
 		String senha;
-		String login;
+		int matricula;
 		int opcao;
-		
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		System.out.println("\n------------Aluno------------");
-		System.out.print("\nUsuário: ");
-		login = obj.nextLine();
-		login = obj.nextLine();
+		System.out.print("\nMatricula: ");
+		matricula = obj.nextInt();
 		System.out.print("Senha: ");
+		senha = obj.nextLine();
 		senha = obj.nextLine();
 		System.out.println("\n	1 - Login");
 		System.out.println("	2 - Voltar");
@@ -62,26 +66,31 @@ public class Application {
 		do {
 			opcao = obj.nextInt();
 			if(opcao == 1) {
-				//Chama a vereificação de login.
-				menuAluno();
-				break;
+				if(conAluno.login(senha, matricula))
+					menuAluno();
+				else {
+					System.out.println("Senha ou matrícula inválida. Tente novamente mais tarde.");
+					telaLogin();
+					break;
+				}
 			}else if(opcao == 2) {
 				telaLogin();
 				break;
 			}else 
-				System.out.println("Opção inválida, digite novamente: ");
+				System.out.print("Opção inválida, digite novamente: ");
 		}while(true);
 	}
 	
 	public void loginServidor() {
 		String senha;
-		String login;
+		int siape;
 		int opcao;
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		System.out.println("\n------------Servidor------------");
-		System.out.print("\nUsuário: ");
-		login = obj.nextLine();
-		login = obj.nextLine();
+		System.out.print("\nSiape: ");
+		siape = obj.nextInt();
 		System.out.print("Senha: ");
+		senha = obj.nextLine();
 		senha = obj.nextLine();
 		System.out.println("\n	1 - Login");
 		System.out.println("	2 - Voltar");
@@ -91,88 +100,105 @@ public class Application {
 		do {
 			opcao = obj.nextInt();
 			if(opcao == 1) {
-				//Chama a vereificação de login.
-				menuServidor();
+				if(conServidor.login(senha, siape))
+					menuServidor();
+				else {
+					System.out.println("Senha ou matrícula inválida. Tente novamente mais tarde.");
+					telaLogin();
+					break;
+				}
 				break;
 			}else if(opcao == 2) {
 				telaLogin();
 				break;
 			}else 
-				System.out.println("Opção inválida, digite novamente: ");
+				System.out.print("Opção inválida, digite novamente: ");
 		}while(true);
 	}
 	
 	public void menuAluno() {
 		int opcao;
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		System.out.println("\n------------Menu Aluno------------");
 		System.out.println("\n	1 - Meus livros");
 		System.out.println("	2 - Pesquisar livros");
-		System.out.println("	4 - Sair");
+		System.out.println("	3 - Sair");
 		System.out.println("\n----------------------------------");
 		System.out.print("\nDigite a opção desejada: ");
 		
 		do {
 			opcao = obj.nextInt();
 			if(opcao == 1) {
-				listarLivrosAlugados();
+				//Função de listar livros alugados na controller do aluno
 				break;
 			}else if(opcao == 2) {
-				pesquisarLivros();
+				conLivro.buscar();
 				break;
 			}else if(opcao == 3) {
 				telaLogin();
 				break;
 			}else 
-				System.out.println("Opção inválida, digite novamente: ");
+				System.out.print("Opção inválida, digite novamente: ");
 		}while(true);
-	}
-	
-	public void listarLivrosAlugados() {
-		
-	}
-	
-	public void pesquisarLivros() {
-		
 	}
 	
 	public void menuServidor() {
 		int opcao;
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		System.out.println("\n------------Menu Servidor------------");
 		System.out.println("\n	1 - Listar Acervo");
 		System.out.println("	2 - Recebimetos");
 		System.out.println("	3 - Cadastros");
-		System.out.println("	3 - Sair");
+		System.out.println("	4 - Pesquisar");
+		System.out.println("	5 - Sair");
 		System.out.println("\n-------------------------------------");
 		System.out.print("\nDigite a opção desejada: ");
 		
 		do {
 			opcao = obj.nextInt();
 			if(opcao == 1) {
-				listarAcervo();
+				conServidor.listarAcervo();
 				break;
 			}else if(opcao == 2) {
-				recebimento();
+				//Função de recebimento na controller do servidor
 				break;
 			}else if(opcao == 3) {
 				cadastros();
 				break;
 			}else if(opcao == 4) {
+				conLivro.buscar();
+				break;
+			}else if(opcao == 5) {
 				telaLogin();
 				break;
 			}else 
-				System.out.println("Opção inválida, digite novamente: ");
+				System.out.print("Opção inválida, digite novamente: ");
 		}while(true);
 	}
 	
-	public void listarAcervo() {
-		
-	}
-	
 	public void cadastros() {
+		int opcao;
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		System.out.println("\n---------------Cadastro--------------");
+		System.out.println("\n	1 - Aluno");
+		System.out.println("	2 - Livro");
+		System.out.println("\n-------------------------------------");
+		System.out.print("\nDigite a opção desejada: ");
 		
-	}
-	
-	public void recebimento() {
-		
+		do {
+			opcao = obj.nextInt();
+			if(opcao == 1)
+				if(conServidor.cadastrarAluno())
+					System.out.println("Cadastro realizado com sucesso!");
+				else
+					System.out.println("Erro.Cadastro não efetuado.");
+			else if(opcao == 2)
+				if(conServidor.cadastrarLivro())
+					System.out.println("Cadastro realizado com sucesso!");
+				else
+					System.out.println("Erro.Cadastro não efetuado.");
+			else
+				System.out.print("Opção inválida. Digite novamente: ");
+		}while(true);
 	}
 }

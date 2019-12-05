@@ -16,6 +16,10 @@ public class ServidorDAO{
 	private ConnectionPSQL connectionPSQL;
 	private Connection connection;
 	
+	public ServidorDAO(ConnectionPSQL connectionPSQL) {
+		this.connectionPSQL = connectionPSQL;
+	}
+	
 	public boolean inserir(Usuario usuario, Servidor servidor) {
 		String sql1 = "INSERT INTO usuario(nome, senha, email, cpf, data_nasc, rua, numero, cidade, estado) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		String sql2 = "SELECT id FROM usuario WHERE cpf = ?;";
@@ -35,7 +39,7 @@ public class ServidorDAO{
 				System.out.println("");
 			}
 			std.setString(6, usuario.getRua());
-			std.setString(7, Integer.toString(usuario.getNumero()));
+			std.setString(7, usuario.getNumero());
 			std.setString(8, usuario.getCidade());
 			std.setString(9, usuario.getEstado());
 			int execucao = std.executeUpdate();
@@ -115,6 +119,43 @@ public class ServidorDAO{
 	}
 
 	public ArrayList<Aluno> buscarDebito() {
+		return null;
+	}
+	
+	public Servidor buscar(String senha, int siape) {
+		String query = "SELECT * FROM servidor as S, usuario as U WHERE S.siape = ? AND U.senha = ?;";
+		
+		try {
+			this.connection = connectionPSQL.getConnection();
+			PreparedStatement std = connection.prepareStatement(query);
+			std.setInt(1, siape);
+			std.setString(2, senha);
+			ResultSet resultado = std.executeQuery();
+			
+			while(resultado.next()) {
+				Servidor servidor = new Servidor();
+				servidor.setCidade(resultado.getString("cidade"));
+				servidor.setCpf(resultado.getString("cpf"));
+				servidor.setNivel_acc(resultado.getInt("nivel_acc"));
+				servidor.setEmail(resultado.getString("email"));
+				servidor.setEstado(resultado.getString("estado"));
+				servidor.setSiape(resultado.getInt("siape"));
+				servidor.setNome(resultado.getString("nome"));
+				servidor.setRua(resultado.getString("rua"));
+				servidor.setNumero(resultado.getString("numero"));
+				servidor.setSenha(resultado.getString("senha"));
+				servidor.setId(resultado.getInt("id"));
+				return servidor;
+			}
+		}catch(SQLException e) {
+			System.out.println("");
+		}finally {
+			try {
+				connection.close();
+			}catch(SQLException e) {
+				System.out.println("");
+			}
+		}
 		return null;
 	}
 
