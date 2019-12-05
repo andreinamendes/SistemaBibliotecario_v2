@@ -56,3 +56,7 @@ INSERT INTO aluno (matricula, id_usr, curso) VALUES (006, 8, 'Sistemas de Inform
 INSERT INTO servidor (siape, id_usr, nivel_acc) VALUES (001, 1, 3);
 INSERT INTO servidor (siape, id_usr, nivel_acc) VALUES (002, 6, 3);
 
+--POPULATION EMPRESTIMO
+INSERT INTO emprestimo VALUES(, , '', );
+
+--POPULATION RESERVA
