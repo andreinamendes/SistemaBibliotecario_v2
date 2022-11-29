@@ -33,7 +33,6 @@ INSERT INTO unidade VALUES(4823, 1097);
 INSERT INTO unidade VALUES(3827, 1239);
 
 --POPULATION USUÁRIOS
-
 INSERT INTO usuario (nome, senha, email, cpf, data_nasc, rua, numero, cidade, estado) VALUES ('Maria Mendonca','1234','maria@gmail.com','12345678910','1987-06-28','Rua Pinto Damasceno','2255','Caninde','Ceara')
 INSERT INTO usuario (nome, senha, email, cpf, data_nasc, rua, numero, cidade, estado) VALUES ('Gregorio Neto','1234','gregorio@gmail.com','12345678911','1999-05-17','Avenida Bosques de Cabral','124','Crato','Ceara');
 INSERT INTO usuario (nome, senha, email, cpf, data_nasc, rua, numero, cidade, estado) VALUES ('Maria Emilia','1234','emilia@gmail.com','12345678912','2000-04-03','Rua Joao Pinto','36','Reboussas','Ceara');
@@ -44,7 +43,6 @@ INSERT INTO usuario (nome, senha, email, cpf, data_nasc, rua, numero, cidade, es
 INSERT INTO usuario (nome, senha, email, cpf, data_nasc, rua, numero, cidade, estado) VALUES ('Constantino Lopes','1234','constantino@gmail.com','12345678917','1993-09-27','Rua Mao de Vaca','879','Caridade','Ceara');
 
 --POPULATION ALUNOS
-
 INSERT INTO aluno (matricula, id_usr, curso) VALUES (1, 2, 'Engenharia de Computacao');
 INSERT INTO aluno (matricula, id_usr, curso) VALUES (2, 3, 'Engenharia de Software');
 INSERT INTO aluno (matricula, id_usr, curso) VALUES (3, 4, 'Ciencia da Computacao');

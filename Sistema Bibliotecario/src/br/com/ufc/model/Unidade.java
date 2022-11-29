@@ -4,9 +4,14 @@ package br.com.ufc.model;
 //import java.text.SimpleDateFormat;
 //import java.util.Date;
 
-public class Unidade {
+public class Unidade{
 	private int numReg;
 	private int numAcv;
+	
+	public Unidade() {
+		this.numReg = 0;
+		this.numAcv = 0;
+	}
 	
 	public int getNumReg() {
 		return numReg;
@@ -20,6 +25,7 @@ public class Unidade {
 	public void setNumAcv(int numAcv) {
 		this.numAcv = numAcv;
 	}
+	
 //	public int getMatricula() {
 //		return matricula;
 //	}

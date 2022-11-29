@@ -133,4 +133,3 @@ CREATE TRIGGER trig_delQtdAcv
 AFTER DELETE ON unidade
 FOR EACH ROW EXECUTE PROCEDURE deleteQtdAcv();
 --DROP TRIGGER trig_delQtdAcv ON unidade;
-
